@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: sans-serif;
+}
+
+.containerMenu {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.containerMain {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    margin-top: 100px;
+}
+
+.products {
+    display: flex;
+    flex-direction: row;    
+    flex-wrap: wrap;
+    justify-content: space-around;    
+}
+
+.menu {    
+    display: flex;
+    justify-content: space-between;
+    padding-top: 50px;
+    max-height: 10%;   
+}
+
+.menuPoint {    
+    display: flex;    
+    max-height: 10%;
+    margin: 10px;    
+}
+
+.menuPointLogo {      
+    height: 30px; 
+    width: 30px;   
+}
+
+.logo{
+    max-width: 100%;
+    max-height:  100%; 
+}
+
+.menuPointText{
+    color: #1958ac; 
+    font-size: 20px;
+    line-height: 30px;    
+    letter-spacing: 0.04em;
+    text-decoration: none  
+}
+
+.menuPointText:hover{
+    color: #1958ac; 
+    font-size: 20px;
+    line-height: 30px;    
+    letter-spacing: 0.04em;  
+    text-decoration: underline; 
+}
+
+.buy-btn{
+    background: #ffffff;   
+    border-radius: 5px;
+    border-color: #1958ac;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 30px;
+    width: 100px;
+    text-align: center;
+    color: #1958ac; 
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-left:50px;         
+}
+
+.buy-btn:hover{
+    background: #1958ac;   
+    border-radius: 5px;
+    border-color: #1958ac;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 30px;
+    width: 100px;
+    text-align: center;
+    color:  #ffffff; 
+    text-transform: uppercase;
+    cursor: pointer;           
+}
+
+.buy-btn:active, .buy-btn:focus {
+    outline: none;  
+}
+
+.productName{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+}
+
+.productImage{
+    width: 100%;
+    height: 100%;
+}
+
+.productItem{
+    margin-left: 25px;
+    margin-right: 25px;
+    width: 200px;
+    height: 300px;
+}
+
+.productPrice{
+    text-align: center;
+} 
+
+
+
