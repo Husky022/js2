@@ -1,35 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>ActionStar Basket</title>
     <link rel="stylesheet" href="style/style1.css">
 </head>
+
 <body>
     <header>
         <div class="containerMenu">
             <div class="menu">
                 <div class="menuPoint">
-                    <a class="menuPointLogo" href="index.html"><img class="logo" src="icons/iconMainMenu.png" alt="MainMenu"></a>
+                    <a class="menuPointLogo" href="index.html"><img class="logo" src="icons/iconMainMenu.png"
+                            alt="MainMenu"></a>
                     <a class="menuPointText" href="index.html">Меню</a>
                 </div>
                 <div class="menuPoint">
-                    <a class="menuPointLogo" href="catalog.html"><img class="logo" src="icons/iconCatalog.png" alt="Catalog"></a>
+                    <a class="menuPointLogo" href="catalog.html"><img class="logo" src="icons/iconCatalog.png"
+                            alt="Catalog"></a>
                     <a class="menuPointText" href="catalog.html">Каталог</a>
                 </div>
                 <div class="menuPoint">
-                    <a class="menuPointLogo" href="basket.html"><img class="logo" src="icons/iconBasket.png" alt="Catalog"></a>
+                    <a class="menuPointLogo" href="basket.html"><img class="logo" src="icons/iconBasket.png"
+                            alt="Catalog"></a>
                     <a class="menuPointText" href="basket.html">Корзина</a>
-                </div>        
+                </div>
             </div>
-        </div>         
+        </div>
     </header>
     <main>
         <div class="containerMain">
             <div class="containerBasket"></div>
-            <div class="orderForm invisible"></div>
+            <div class="orderForm invisible">
+                <div class="basketMiniStringMain">Ваши контакты:</div>
+                <form action="#" class="some" id="contactsForm">
+                    <div>
+                        <label><input class="inputForm" placeholder="Ваше имя:" type="text" name="name"
+                                id="name"></label>
+                    </div>
+                    <div>
+                        <label><input class="inputForm" placeholder="Ваш телефон:" type="tel" name="phone"
+                                id="phone"></label>
+                    </div>
+                    <div>
+                        <label><input class="inputForm" placeholder="Ваш email:" type="email" name="email" id="email">
+                        </label>
+                    </div>
+                    <button class="confirm-btn">Отправить</button>
+                </form>
+                <button class="backToBasket-btn">Вернуться в корзину</button>
+            </div>
         </div>
+        <div class="Finish invisible"></div>
     </main>
     <script src="js/main.js"></script>
 </body>
+
 </html>
