@@ -18,12 +18,12 @@ const app = new Vue({
         validateString: '',
         showBasket: false,
         showMaxBasket: true,
-        patterns = {
+        patterns: {
                 name: /^[a-zа-яё]+$/i,
                 phone: /^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/i,
                 email: /^[\w.-]+@\w+\.[a-z]{2,4}$/i
         },
-        errors = {
+        errors: {
                 name: 'Введите имя, содержащее только буквы',
                 phone: 'Формат телефона +7(900)000-00-00',
                 email: 'Введен некорректный email'
