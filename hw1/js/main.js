@@ -1,20 +1,11 @@
-const newProducts = [
-    {id: 1, title: 'GoPro7 Black', price: 22000},
-    {id: 2, title: 'GoPro8 Black', price: 27000},
-    {id: 3, title: 'GoPro9 Black', price: 35000},
-    {id: 4, title: 'GoPro7 Silver', price: 18000},
-    {id: 5, title: 'GoPro8 Silver', price: 20000},
-    {id: 6, title: 'GoPro Fusion', price: 20000},
-    {id: 7, title: 'GoPro9 White'},
-    {id: 8, title: 'GoPro7 White', price: 18000},
-    {id: 9, title: 'GoPro9 Silver', price: 30000}
-];
+const newProducts = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/catalogData.json'
+const newProductsInBasket = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/getBasket.json'
 
 
 class Product{
     constructor(product){
-        this.id = product.id;
-        this.title = product.title;
+        this.id = product.id_product;
+        this.title = product.product_name;
         this.price = product.price;
     }
     
@@ -35,10 +26,25 @@ class ProductItem extends Product{
 	}
 
 class Catalog{
-    constructor(products, container = '.products'){ 
+    constructor(container = '.products'){ 
         this.container = container;       
-        this.products = products;                
+        this.products = [];
+        this._getProducts()
+            .then(data => {
+                this.products = [...data];
+                this.renderPage()
+            });
+
     }
+
+    _getProducts(){
+        return fetch(newProducts)
+            .then(result => result.json())
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     renderPage(){
         const block = document.querySelector(this.container);        
             for (let item of this.products){            
@@ -49,12 +55,39 @@ class Catalog{
 }
 
 class Basket{
-    constructor(productsInBasket){          
-        this.products = productsInBasket;                
+    constructor(container = '.containerBasket'){  
+        this.container = container;        
+        this.products = [];
+        this._getProducts()
+            .then(data => {
+                this.products = data.contents;
+                this.renderBasket()
+            });
+
     }
 
+    _getProducts(){
+        return fetch(newProductsInBasket)
+            .then(result => result.json())
+            .catch(error => {
+                console.log(error);
+            })
+    }      
+    
     renderBasket(){
-        // для отрисовки корзины
+        const block = document.querySelector(this.container);
+        let basketStringMain = document.createElement ("div");
+        basketStringMain.className = "basketStringMain";
+        block.append(basketStringMain);
+        basketStringMain.innerText = "Ваша корзина:";       
+            for (let item of this.products){            
+                const productObj = new ProductInBasket(item);            
+                block.insertAdjacentHTML('beforeend',productObj.renderProductInBasket())
+            }
+        var basketStringSummary = document.createElement ("div");
+        basketStringSummary.className = "basketStringSummary";
+        block.append(basketStringSummary);
+        basketStringSummary.innerText = `Итого: ${this.summaryBasket()} руб.`;
     }
 
     removeProduct(){
@@ -75,12 +108,21 @@ class ProductInBasket extends Product{
         super(product);
         this.quantity = quantity;        
     }
-        //помимо стандартных свойств добавилось количество данного продукта в корзине, по умолчанию - 1
-}
+
+    renderProductInBasket(){     
+        return `<div class="productItemInBasket">            
+            <h3 class="productNameInBasket">${this.title}</h3>
+            <p class="productPriceInBasket">${this.quantity} шт.</p>
+            <p class="productPriceInBasket">${(this.price == undefined)? 777: this.price} руб.</p>
+            
+        </div>`           
+    }        
+}    
 
 
-// let list = new Catalog(newProducts);
-// list.renderPage();
+let list = new Catalog();
+let bask = new Basket();
+
 
 
 // let bask = new Basket(newProducts);
