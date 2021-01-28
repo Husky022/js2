@@ -1,0 +1,11 @@
+{
+    "contents": [
+        {
+            "quantity": 2,
+            "id_product": 4,
+            "product_name": "GoPro7 Silver",
+            "price": 18000,
+            "img": "pictures/gopro7silver.png"
+        }
+    ]
+}

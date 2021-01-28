@@ -1,0 +1,56 @@
+[
+  {
+    "id_product": 1,
+    "product_name": "GoPro7 Black",
+    "price": 22000,
+    "img": "pictures/gopro7black.png"
+  },
+  {
+    "id_product": 2,
+    "product_name": "GoPro8 Black",
+    "price": 27000,
+    "img": "pictures/gopro8black.png"
+  },
+  {
+    "id_product": 3,
+    "product_name": "GoPro9 Black",
+    "price": 35000,
+    "img": "pictures/gopro9black.png"
+  },
+  {
+    "id_product": 4,
+    "product_name": "GoPro7 Silver",
+    "price": 18000,
+    "img": "pictures/gopro7silver.png"
+  },
+  {
+    "id_product": 5,
+    "product_name": "GoPro8 Silver",
+    "price": 20000,
+    "img": "pictures/gopro8silver.png"
+  },
+  {
+    "id_product": 6,
+    "product_name": "GoPro Fusion",
+    "price": 20000,
+    "img": "pictures/goproFusion.png"
+  },
+  {
+    "id_product": 7,
+    "product_name": "GoPro9 White",
+    "price": 24000,
+    "img": "pictures/gopro9white.png"
+  },
+  {
+    "id_product": 8,
+    "product_name": "GoPro7 White",
+    "price": 18000,
+    "img": "pictures/gopro7white.png"
+  },
+  {
+    "id_product": 9,
+    "product_name": "GoPro9 Silver",
+    "price": 30000,
+    "img": "pictures/gopro9silver.png"
+  }
+]
