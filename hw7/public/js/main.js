@@ -13,7 +13,6 @@ const app = new Vue({
         products: [],
         filtered: [],
         inBasket: [],       
-        img: 'pictures/nophoto.png',
         userSearch: '',
         validateString: '',
         showBasket: false,
@@ -38,21 +37,52 @@ const app = new Vue({
                     console.log(error);
                 })
         },
-        addProduct(product){
-            this.getJson(addToBasket)
-                .then(data => {
-                    if (data.result === 1) {                    
-                    let find = this.inBasket.find(el => el.id_product === product.id_product);
-                    if (find) {
-                        find.quantity++;                        
-                    } else {
-                        const prod = Object.assign({quantity: 1}, product);
-                        this.inBasket.push(prod)
-                    }
-                } else {
-                    alert('Error');
-                }
+        postJson(url, data){
+            return fetch(url, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
             })
+                .then(result => result.json())
+                .catch(error => {
+                    // console.log(error)
+                    this.$refs.error.text = error;
+                })
+        },
+        putJson(url, data){
+            return fetch(url, {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+                .then(result => result.json())
+                .catch(error => {
+                    // console.log(error)
+                    this.$refs.error.text = error;
+                })
+        },
+        addProduct(item){
+            let find = this.inBasket.find(el => el.id_product === item.id_product);
+            if(find){
+                this.putJson(`/api/cart/${find.id_product}`, {quantity: 1})
+                    .then(data => {
+                        if(data.result === 1){
+                            find.quantity++
+                        }
+                    })
+            } else {
+                const prod = Object.assign({quantity: 1}, item);
+                this.postJson(`/api/cart`, prod)
+                    .then(data => {
+                        if(data.result === 1){
+                            this.inBasket.push(prod)
+                        }
+                    })
+            }
         },
         removeProduct(product){
             this.getJson(delFromBasket)
@@ -86,14 +116,14 @@ const app = new Vue({
 
     },
     mounted(){
-        this.getJson(this.catalogUrl)
+        this.getJson(`/api/products`)
             .then(data => {
                 for (let item of data){
                     this.$data.products.push(item);
                     this.$data.filtered.push(item);
                 }
             });
-        this.getJson(this.basketUrl)
+        this.getJson(`/api/cart`)
             .then(data => {
                 for (let item of data.contents){                    
                     this.$data.inBasket.push(item);

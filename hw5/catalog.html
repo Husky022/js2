@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,27 +18,13 @@
                         <a class="menuPointLogo" href="catalog.html"><img class="logo" src="icons/iconCatalog.png" alt="Catalog"></a>
                         <a class="menuPointText" href="catalog.html">Каталог</a>
                     </div>                
-                    <div class="menuPoint">                    
-                        <form action="#" class="search-form" @submit.prevent="filter">
-                            <input class="textSearch" type="text" placeholder="Поиск.." v-model="userSearch">
-                            <button class="submitSearch" type="submit"><img class="logo-search" src="icons/search.png" alt="search"><i class="fas fa-search"></i></button>
-                        </form>
+                    <div class="menuPoint"> 
+                        <search-form></search-form>
                     </div>
                     <div class="menuPoint">
                         <button class="btnBasketLogo"><img class="logo" src="icons/iconBasket.png" alt="Catalog"></button>
                         <button class="btnBasketText" type="button" @click="showBasket=!showBasket">Корзина</button>
-                        <div class="basketMini" v-show="showBasket">
-                            <div v-if="!inBasket.length" class="basketMiniStringMain" style="color:rgb(255, 0, 0)">Ваша корзина пуста</div>
-                            <div v-else class="basketMiniStringMain">Ваша корзина</div>
-                            <div class="productItemInBasket" v-for="product in inBasket":key="product.id_product">
-                                <h3 class="productNameInBasket">{{product.product_name}}</h3>
-                                <p class="productQuantityInBasket">{{product.quantity}} шт.</p>
-                                <p class="productPriceInBasket">{{(product.price == undefined) ? 777 : product.price * product.quantity}} руб.</p>
-                                <button class="del-btn" @click=removeProduct(product)>x</button>
-                            </div>
-                            <div v-if="inBasket.length" class="basketMiniStringSummary">Итого {{summaryBasket()}} руб.</div>
-                            <button v-if="inBasket.length" onclick="location.href = 'basket.html'" class="basketForwardBtn">Перейти к оформлению</button>
-                        </div>
+                        <basket-mini :in-basket="inBasket" :visibility="showBasket" @remove="removeProduct"></basket-mini>            
                     </div>        
                 </div>
             </div>       
@@ -57,7 +43,10 @@
         </main>
     </div>     
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+        <script src="js/basketMini.js"></script>
+        <script src="js/searchForm.js"></script>        
         <script src="js/main.js"></script>
+        
         
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
