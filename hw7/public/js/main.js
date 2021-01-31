@@ -65,6 +65,18 @@ const app = new Vue({
                     this.$refs.error.text = error;
                 })
         },
+        deleteJson(url){
+            return fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(result => result.json())
+                .catch(error => {
+                    console.log(error);                    
+                })
+        },
         addProduct(item){
             let find = this.inBasket.find(el => el.id_product === item.id_product);
             if(find){
@@ -84,19 +96,22 @@ const app = new Vue({
                     })
             }
         },
-        removeProduct(product){
-            this.getJson(delFromBasket)
-                .then(data => {
-                    if (data.result === 1) {                   
-                        if (product.quantity > 1) {
-                            product.quantity--;
-                        } else {
-                        this.inBasket.splice(this.inBasket.indexOf(product), 1);                        
-                    }                   
-                } else {
-                    alert('Error');
-                }
-            })
+        removeProduct(item) {
+            if(item.quantity > 1){
+                this.putJson(`/api/cart/${item.id_product}`, {quantity: -1})
+                    .then(data => {
+                        if(data.result === 1){
+                            item.quantity--;
+                        }
+                    })
+            } else {
+                this.deleteJson(`/api/cart/${item.id_product}`)
+                    .then(data => {
+                        if(data.result === 1){
+                            this.inBasket.splice(this.inBasket.indexOf(item), 1)
+                        }
+                    })
+            }
         },
         filter(userSearch){
             const regexp = new RegExp(userSearch, 'i');
@@ -131,91 +146,4 @@ const app = new Vue({
             });
     }
 })
-
-
-// class Validator {
-//     constructor(form) {
-//         this.patterns = {
-//             name: /^[a-zа-яё]+$/i,
-//             phone: /^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/i,
-//             email: /^[\w.-]+@\w+\.[a-z]{2,4}$/i
-//         };
-//         this.errors = {
-//             name: 'Введите имя, содержащее только буквы',
-//             phone: 'Формат телефона +7(900)000-00-00',
-//             email: 'Введен некорректный email'
-//         };
-//         this.errorClass = 'error-msg';
-//         this.form = form;
-//         this.valid = false;
-//         this._validateForm();
-//     }
-//     validate(regexp, value) {
-//         regexp.test(value)
-//     }
-
-//     _validateForm() {
-//         let errors = [...document.getElementById(this.form).querySelectorAll(`.${this.errorClass}`)];
-//         for (let error of errors) {
-//             error.remove();
-//         }
-//         let formFields = [...document.getElementById(this.form).getElementsByTagName('input')];
-//         for (let field of formFields) {
-//             this._validate(field);
-//         }
-//         if (![...document.getElementById(this.form).querySelectorAll('.invalid')].length) {
-//             this.valid = true;
-//         }
-//     }
-//     _validate(field) {
-//         if (this.patterns[field.name]) {
-//             if (!this.patterns[field.name].test(field.value)) {
-//                 field.classList.add('invalid');
-//                 this._addErrorMsg(field);
-//                 this._watchField(field);
-//             }
-//         }
-//     }
-//     _addErrorMsg(field) {
-//         let error = `<div class="${this.errorClass}">${this.errors[field.name]}</div> `;
-//         field.parentNode.insertAdjacentHTML('beforebegin', error);
-
-//     }
-//     _watchField(field) {
-//         field.addEventListener('input', () => {
-//             let error = field.parentNode.querySelector(`.${this.errorClass}`);
-//             if (this.patterns[field.name].test(field.value)) {
-//                 field.classList.remove('invalid');
-//                 field.classList.add('valid');
-//                 if (error) {
-//                     error.remove();
-//                 }
-//             } else {
-//                 field.classList.remove('valid');
-//                 field.classList.add('invalid');
-//                 if (!error) {
-//                     document.querySelector(`.${this.errorClass}`).remove();
-//                     this._addErrorMsg(field);
-//                 }
-//             }
-
-//         })
-//     }
-// }
-
-
-
-
-
-// const list2 = {
-//     Catalog: ProductItem,
-//     Basket: ProductInBasket
-// };
-
-
-// let bask2 = new BasketMax();
-// let bask1 = new BasketMini();
-// let list1 = new Catalog(bask1);
-
-
 

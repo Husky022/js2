@@ -33,14 +33,14 @@ html {
     background-color: white;
     padding: 20px;
     color: black;
-    width: 350px;
+    width: 450px;
 }
 
 .invisible{
     display: none;
 }
 
-.containerMenu {
+.containerMenu, footer {
     margin-left: auto;
     margin-right: auto;
     width: 60%;
@@ -48,8 +48,23 @@ html {
     margin-bottom: 20px;
 }
 
+.mainImageContainer {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;   
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.mainImage{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    opacity: 0.9;
+}
+
 .containerBasket {
-    width: 359px;
+    width: 450px;
     min-width: 100px;
     padding: 32px;
     margin-left: 100px;    
@@ -93,12 +108,19 @@ html {
     justify-content: space-around;    
 }
 
-.menu {    
+.menu, .footerMenu { 
+
     display: flex;
     justify-content: space-between;
     padding-top: 50px;
-    max-height: 10%;   
+    max-height: 10%;  
+
 }
+
+.footerText{
+    text-decoration: none;
+    color: #1958ac;      
+} 
 
 .menuPoint {    
     display: flex;    
@@ -150,9 +172,7 @@ html {
     margin-left: 16%;
 }
 
-.inputForm:focus{
-
-    
+.inputForm:focus{    
     outline: none;
 }
 
@@ -231,10 +251,26 @@ html {
     text-align: center;
     color: #1958ac;    
     cursor: pointer;
-    margin-left: 17%; 
+    margin-left: 25%; 
     outline: none; 
     border: 0;
     background: transparent;           
+}
+
+.orderContainerButton{
+    margin-left: 10%;
+    outline: 0;
+    border: 0;
+    background: 0;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.orderContainerButton:hover{
+    color: #1958ac;
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
 }
 
 .btn-complete, .confirm-btn{
@@ -296,6 +332,24 @@ html {
     margin-right: 25px;
     width: 200px;
     height: 300px;
+}
+
+.orderContainer {
+    position:absolute;
+    top: 40%;
+    left:60%;
+}
+
+.orderContainerText {
+    color:  #ffffff;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.orderContainerButton {
+    color:  #ffffff;
+    font-size: 30px;
+    margin-bottom: 15px;
 }
 
 .productItemInBasket{
