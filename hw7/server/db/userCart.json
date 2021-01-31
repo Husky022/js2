@@ -1,0 +1,11 @@
+{
+    "contents": [
+        {
+            "quantity": 7,
+            "id_product": 3,
+            "product_name": "GoPro9 Black",
+            "price": 35000,
+            "img": "pictures/gopro9black.png"
+        }
+    ]
+}

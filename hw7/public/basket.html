@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ActionStar Basket</title>
+    <link rel="stylesheet" href="style/style1.css">
+</head>
+
+<body>
+    <div id="app">     
+        <header>
+            <div class="containerMenu">
+                <div class="menu">
+                    <div class="menuPoint">
+                        <a class="menuPointLogo" href="index.html"><img class="logo" src="icons/iconMainMenu.png"
+                                alt="MainMenu"></a>
+                        <a class="menuPointText" href="index.html">Меню</a>
+                    </div>
+                    <div class="menuPoint">
+                        <a class="menuPointLogo" href="catalog.html"><img class="logo" src="icons/iconCatalog.png"
+                                alt="Catalog"></a>
+                        <a class="menuPointText" href="catalog.html">Каталог</a>
+                    </div>
+                    <div class="menuPoint">
+                        <a class="menuPointLogo" href="basket.html"><img class="logo" src="icons/iconBasket.png"
+                                alt="Catalog"></a>
+                        <a class="menuPointText" href="basket.html">Корзина</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="containerMain">
+                <div class="containerBasket" v-show="showMaxBasket">
+                    <div class="basketMiniStringMain">Ваша корзина</div>
+                    <div class="productItemInBasket" v-for="product in inBasket":key="product.id_product">
+                        <h3 class="productNameInBasket">{{product.product_name}}</h3>
+                        <p class="productQuantityInBasket">{{product.quantity}} шт.</p>
+                        <p class="productPriceInBasket">{{(product.price == undefined) ? 777 : product.price * product.quantity}} руб.</p>
+                        <button class="del-btn" @click=removeProduct(product)>x</button>
+                    </div>
+                    <div class="basketMiniStringSummary">Итого {{summaryBasket()}} руб.</div>
+                    <button class="btn-complete" type="button" @click="showMaxBasket=!showMaxBasket">Завершить покупку</button>                    
+                </div>
+                <div class="orderForm" v-show="!showMaxBasket">
+                    <div class="basketMiniStringMain">Ваши контакты:</div>
+                    <form action="#" class="some" id="contactsForm" @submit.prevent="validate">
+                        <div>
+                            <label><input class="inputForm" placeholder="Ваше имя:" type="text" name="name"
+                                    id="name" v-model="validateString"></label>
+                        </div>
+                        <div>
+                            <label><input class="inputForm" placeholder="Ваш телефон:" type="tel" name="phone"
+                                    id="phone" v-model="validateString"></label>
+                        </div>
+                        <div>
+                            <label><input class="inputForm" placeholder="Ваш email:" type="email" name="email" 
+                                id="email" v-model="validateString">
+                            </label>
+                        </div>
+                        <button class="confirm-btn">Отправить</button>
+                    </form>
+                    <button class="backToBasket-btn" type="button" @click="showMaxBasket=!showMaxBasket">Вернуться в корзину</button>
+                </div>
+            </div>
+            <div class="Finish invisible"></div>
+        </main>
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+        <script src="js/build.js"></script>
+</body>
+
+</html>
